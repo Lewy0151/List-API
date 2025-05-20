@@ -80,7 +80,7 @@ exports.getMovieByTitle = async (request, response) => {
 };
 
 // Finding all movies by director
-exports.getMovieByDirector = async (request, response) => {
+exports.getMoviesByDirector = async (request, response) => {
   try {
     const movies = await Movie.find({
       director: req.params.getMoviesByDirector,
