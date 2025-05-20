@@ -40,7 +40,7 @@ exports.updateMovie = async (request, response) => {
         new: true,
       }
     );
-    res.send(movie);
+    response.send(movie);
   } catch (error) {
     response.status(500).send({ message: "Error updating movie" });
   }
