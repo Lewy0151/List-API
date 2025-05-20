@@ -2,7 +2,7 @@ require("dotenv").config(); // loads environment variables from .env file into p
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
-const todoRoutes = require("./routes/movieRoutes");
+const movieRoutes = require("./routes/movieRoutes");
 const mongoose = require("mongoose");
 
 const MONGODB_URL =
