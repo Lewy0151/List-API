@@ -70,10 +70,11 @@ exports.deleteAllMovie = async (request, response) => {
 // Finding movie by title
 exports.getMovieByTitle = async (request, response) => {
   try {
-    const movie = await Movie.findOne({ title: req.params.title });
+    const movie = await Movie.findOne({ title: { $regex: new RegExp(request.params.title, "i")}});
     if (!movie) {
       return response.status(404).send({ message: "Movie not found" });
     }
+    response.send(movie);
   } catch (error) {
     response.status(500).send({ message: "Error retrieving movie" });
   }
@@ -83,9 +84,9 @@ exports.getMovieByTitle = async (request, response) => {
 exports.getMoviesByDirector = async (request, response) => {
   try {
     const movies = await Movie.find({
-      director: req.params.getMoviesByDirector,
+      director: {$regex: new RegExp(request.params.director, "i")}
     });
-    res.send(movies);
+    response.send(movies);
   } catch (error) {
     response.status(500).send({ message: "Error retrieving movie" });
   }
