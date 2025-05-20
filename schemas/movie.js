@@ -11,7 +11,7 @@ const movieSchema = new mongoose.Schema({
   },
   watched: {
     type: boolean,
-    required: true,
+    required: false,
   },
 });
 
