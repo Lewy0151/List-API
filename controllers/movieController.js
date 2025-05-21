@@ -83,7 +83,7 @@ exports.getMovieByTitle = async (request, response) => {
 exports.getMovieByDirector = async (request, response) => {
   try {
     const movies = await Movie.find({
-      director: req.params.director,
+      director: req.params.director
     });
     response.send(movies);
   } catch (error) {
