@@ -40,7 +40,7 @@ exports.updateMovie = async (request, response) => {
         new: true,
       }
     );
-    res.send(movie);
+    response.send(movie);
   } catch (error) {
     response.status(500).send({ message: "Error updating movie" });
   }
@@ -48,7 +48,7 @@ exports.updateMovie = async (request, response) => {
 
 exports.deleteMovie = async (request, response) => {
   try {
-    const movie = await Movie.findByIdAndDelete(req.params.id);
+    const movie = await Movie.findByIdAndDelete(request.params.id);
     if (!movie) {
       return response.status(404).send({ message: "Movie not found" });
     }
@@ -70,10 +70,11 @@ exports.deleteAllMovie = async (request, response) => {
 // Finding movie by title
 exports.getMovieByTitle = async (request, response) => {
   try {
-    const movie = await Movie.findOne({ title: req.params.title });
+    const movie = await Movie.findOne({ title: request.params.title });
     if (!movie) {
       return response.status(404).send({ message: "Movie not found" });
     }
+    response.send(movie);
   } catch (error) {
     response.status(500).send({ message: "Error retrieving movie" });
   }
@@ -83,7 +84,7 @@ exports.getMovieByTitle = async (request, response) => {
 exports.getMovieByDirector = async (request, response) => {
   try {
     const movies = await Movie.find({
-      director: req.params.director
+      director: request.params.director
     });
     response.send(movies);
   } catch (error) {
